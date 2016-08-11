@@ -234,6 +234,8 @@ void Adafruit_StepperMotor::step(uint16_t steps, uint8_t dir,  uint8_t style) {
     //Serial.println("step!"); Serial.println(uspers);
     ret = onestep(dir, style);
     delayMicroseconds(uspers);
+    //solve WDT problem with the ESP8266 with a large amount of steps: This gives time to perform other tasks like the ESP8266 WiFi:
+    delay(0);
   }
 }
 
