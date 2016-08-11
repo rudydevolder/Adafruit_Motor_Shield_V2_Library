@@ -234,6 +234,10 @@ void Adafruit_StepperMotor::step(uint16_t steps, uint8_t dir,  uint8_t style) {
     //Serial.println("step!"); Serial.println(uspers);
     ret = onestep(dir, style);
     delayMicroseconds(uspers);
+    //Following line ""delay(0)"" is added because of the ESP8266 giving WatchDogTimer error that's software resetting the ESP8266
+    //to avoid problems with WiFi. 
+    //The delay gives the chance to the processor to perform the necessary WiFi tasks in between when needed. 
+    delay(0);
   }
 }
 
